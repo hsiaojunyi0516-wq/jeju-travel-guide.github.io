@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>濟州島自由行終極指南 | Jeju Travel Guide</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jeju: {
+                            orange: '#FF7E36',
+                            lightOrange: '#FFF3EB',
+                            green: '#2A9D8F',
+                            lightGreen: '#EAF6F5',
+                            dark: '#264653',
+                            cream: '#F8F9FA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab {
+            border-bottom: 3px solid #FF7E36;
+            color: #FF7E36;
+            font-weight: 700;
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body {
+            background-color: #F8F9FA;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased selection:bg-jeju-orange selection:text-white">
+
+    <!-- 導覽列 Navbar -->
+    <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl">🍊</span>
+                    <span class="font-bold text-xl text-jeju-dark tracking-tight">JEJU <span class="text-jeju-orange">GO!</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium text-gray-600">
+                    <a href="#prep" class="hover:text-jeju-orange transition">行前準備</a>
+                    <a href="#itinerary" class="hover:text-jeju-orange transition">行程推薦</a>
+                    <a href="#attractions" class="hover:text-jeju-orange transition">熱門景點</a>
+                    <a href="#food" class="hover:text-jeju-orange transition">必吃美食</a>
+                    <a href="#tools" class="hover:text-jeju-orange transition">實用工具</a>
+                </div>
+                <button onclick="scrollToSection('tools')" class="bg-jeju-orange text-white px-4 py-2 rounded-full font-medium hover:bg-orange-600 transition shadow-md hover:shadow-lg text-sm">
+                    <i class="fa-solid fa-calculator mr-1"></i> 預算估算
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 主視覺區塊 -->
+    <header class="relative bg-gradient-to-r from-jeju-dark to-jeju-green text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="bg-jeju-orange/30 text-orange-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">2026 最新濟州島攻略</span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 leading-tight">探索火山與海風交織的<br><span class="text-jeju-orange">韓國蜜月之島</span></h1>
+            <p class="text-lg sm:text-xl text-emerald-100 mb-8 max-w-2xl mx-auto font-light">從城山日出峰的晨光，到崖月邑的蔚藍海景咖啡廳，為您精心規劃濟州島自由行的每一個精彩瞬間。</p>
+            
+            <!-- 快速導覽搜尋框 -->
+            <div class="max-w-xl mx-auto bg-white p-2 rounded-full shadow-2xl flex items-center">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 ml-4 mr-2"></i>
+                <input type="text" id="heroSearchInput" placeholder="搜尋景點、美食（如：黑豬肉、城山日出峰）..." class="w-full text-gray-800 focus:outline-none px-2 text-sm sm:text-base">
+                <button onclick="searchAttraction()" class="bg-jeju-orange text-white px-6 py-2.5 rounded-full hover:bg-orange-600 transition font-medium text-sm">搜尋</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 核心內容區塊 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- 1. 行前準備與實用 App -->
+        <section id="prep" class="scroll-mt-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-jeju-dark">🚀 行前準備 & 必備 App</h2>
+                <p class="text-gray-500 mt-2">出發濟州島前必須準備的重點資訊</p>
+            </div>
+            
+            <div class="grid md:grid-row-3 lg:grid-cols-3 gap-6">
+                <!-- 卡片 1: 入境與簽證 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center text-jeju-orange text-2xl mb-4">
+                        <i class="fa-solid fa-passport"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">入境與簽證</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li>• <strong>護照效期：</strong>需剩餘 6 個月以上。</li>
+                        <li>• <strong>K-ETA 免簽登錄：</strong>台灣護照免簽，建議出發前申請 K-ETA（若政策維持免除則依最新公告為準）。</li>
+                        <li>• <strong>Q-Code 健檢填寫：</strong>填寫線上健康申報更快通關。</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 2: 交通與通訊 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-jeju-green text-2xl mb-4">
+                        <i class="fa-solid fa-bus"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">交通與通訊</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li>• <strong>T-Money 卡：</strong>搭乘濟州公車必備，可在超商儲值。</li>
+                        <li>• <strong>租車自駕：</strong>需準備「國際駕照(A/B類)」+ 台灣駕照 + 護照 + 信用卡。</li>
+                        <li>• <strong>網路 esim：</strong>推薦網卡/eSIM，保持網路順暢。</li>
+                    </ul>
+                </div>
+
+                <!-- 卡片 3: 在地必備 App -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-500 text-2xl mb-4">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">在地必用 App</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm">
+                        <li>• <strong>Naver Map：</strong>Google Map 在韓國不準，這款才是導航神器。</li>
+                        <li>• <strong>Kakao T：</strong>濟州島叫計程車必備。</li>
+                        <li>• <strong>Papago：</strong>最強韓文即時翻譯、照片翻譯。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 經典 5 天 4 夜行程規劃 -->
+        <section id="itinerary" class="scroll-mt-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-jeju-dark">📅 經典 5 天 4 夜行程規劃</h2>
+                <p class="text-gray-500 mt-2">順時針/逆時針玩法，順暢不走回頭路</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                <!-- Day 頁籤 -->
+                <div class="flex border-b border-gray-200 overflow-x-auto bg-gray-50" id="dayTabs">
+                    <button onclick="switchDay(1)" id="tab-day1" class="px-6 py-4 font-medium transition whitespace-nowrap active-tab">Day 1：市區與西部浪漫</button>
+                    <button onclick="switchDay(2)" id="tab-day2" class="px-6 py-4 font-medium transition whitespace-nowrap text-gray-500 hover:text-jeju-orange">Day 2：西南海岸與雪綠茶</button>
+                    <button onclick="switchDay(3)" id="tab-day3" class="px-6 py-4 font-medium transition whitespace-nowrap text-gray-500 hover:text-jeju-orange">Day 3：南部西歸浦風光</button>
+                    <button onclick="switchDay(4)" id="tab-day4" class="px-6 py-4 font-medium transition whitespace-nowrap text-gray-500 hover:text-jeju-orange">Day 4：東部世界自然遺產</button>
+                    <button onclick="switchDay(5)" id="tab-day5" class="px-6 py-4 font-medium transition whitespace-nowrap text-gray-500 hover:text-jeju-orange">Day 5：市區採購與滿載而歸</button>
+                </div>
+
+                <!-- Day 內容 -->
+                <div class="p-6 sm:p-8" id="dayContent">
+                    <!-- 動態渲染行程內容 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 熱門景點探索 (按區域) -->
+        <section id="attractions" class="scroll-mt-20">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-jeju-dark">🗺️ 分區熱門景點探索</h2>
+                    <p class="text-gray-500 mt-2">快速尋找東、西、南、北部的必去地標</p>
+                </div>
+                <!-- 區域篩選器 -->
+                <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="regionFilter">
+                    <button onclick="filterRegion('all')" class="px-4 py-2 rounded-full text-sm font-medium bg-jeju-orange text-white filter-btn" data-region="all">全區</button>
+                    <button onclick="filterRegion('east')" class="px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 filter-btn" data-region="east">東部</button>
+                    <button onclick="filterRegion('west')" class="px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 filter-btn" data-region="west">西部</button>
+                    <button onclick="filterRegion('south')" class="px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 filter-btn" data-region="south">南部 (西歸浦)</button>
+                    <button onclick="filterRegion('north')" class="px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 filter-btn" data-region="north">北部 (濟州市)</button>
+                </div>
+            </div>
+
+            <!-- 景點卡片網格 -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="attractionsGrid">
+                <!-- 景點動態由 JS 渲染 -->
+            </div>
+        </section>
+
+        <!-- 4. 必吃美食與必買購物 -->
+        <section id="food" class="scroll-mt-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-jeju-dark">🍖 美食饗宴 & Olive Young 購物清單</h2>
+                <p class="text-gray-500 mt-2">來濟州島絕不能錯過的味蕾與購物體驗</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- 必吃美食 -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="text-2xl font-bold text-jeju-orange mb-6 flex items-center">
+                        <i class="fa-solid fa-utensils mr-3"></i> 濟州島 5 大必吃美食
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="text-3xl">🥓</span>
+                            <div>
+                                <h4 class="font-bold text-lg">濟州黑豬肉 (흑돼지)</h4>
+                                <p class="text-sm text-gray-600">肉質扎實多汁，搭配特製鯷魚醬（멜젓）炭烤風味絕佳。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="text-3xl">🍊</span>
+                            <div>
+                                <h4 class="font-bold text-lg">漢拏山柑橘點心 & 冰淇淋</h4>
+                                <p class="text-sm text-gray-600">濟州特產柑橘做成的果汁、蛋塔、牛島花生冰淇淋。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="text-3xl">🍜</span>
+                            <div>
+                                <h4 class="font-bold text-lg">豬肉湯麵 (고기국수)</h4>
+                                <p class="text-sm text-gray-600">濃厚白湯底搭配厚切黑豬肉片，溫暖又飽足的平民美食。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="text-3xl">🐟</span>
+                            <div>
+                                <h4 class="font-bold text-lg">白帶魚料理 (갈치요리)</h4>
+                                <p class="text-sm text-gray-600">整條長形香煎白帶魚或辣煮白帶魚鍋，極具視覺衝擊。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="text-3xl">🦪</span>
+                            <div>
+                                <h4 class="font-bold text-lg">鮑魚粥 & 鮑魚石鍋飯</h4>
+                                <p class="text-sm text-gray-600">新鮮在地鮑魚濃縮鮮味，早午餐的暖胃首選。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 購物清單 (含 Olive Young 提點) -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="text-2xl font-bold text-jeju-green mb-6 flex items-center">
+                        <i class="fa-solid fa-bag-shopping mr-3"></i> 濟州採購與 Olive Young 熱門
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="bg-emerald-100 text-jeju-green text-xs font-bold px-2.5 py-1 rounded-full mt-1">美妝</span>
+                            <div>
+                                <h4 class="font-bold text-lg">Olive Young 必買護膚保養</h4>
+                                <p class="text-sm text-gray-600">Torriden 保濕精華、Vaseline 煥亮乳液、d'Alba 空姐噴霧、MEDIHEAL 面膜。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="bg-orange-100 text-jeju-orange text-xs font-bold px-2.5 py-1 rounded-full mt-1">伴手禮</span>
+                            <div>
+                                <h4 class="font-bold text-lg">濟州柑橘巧克力 & 餅乾</h4>
+                                <p class="text-sm text-gray-600">石頭爺爺造型夾心餅乾、漢拏山柑橘乾、柑橘瑪德蓮。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4 border-b border-gray-100 pb-3">
+                            <span class="bg-emerald-100 text-jeju-green text-xs font-bold px-2.5 py-1 rounded-full mt-1">茶飲</span>
+                            <div>
+                                <h4 class="font-bold text-lg">OSULLOC 雪綠茶產品</h4>
+                                <p class="text-sm text-gray-600">抹茶抹醬、有機綠茶包、綠茶夾心餅乾。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="bg-blue-100 text-blue-600 text-xs font-bold px-2.5 py-1 rounded-full mt-1">酒類</span>
+                            <div>
+                                <h4 class="font-bold text-lg">漢拏山燒酒 (한라산 소주)</h4>
+                                <p class="text-sm text-gray-600">使用濟州火山地表水釀造，透亮瓶身透明純粹。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 實用工具箱 (預算試算 & 行李備忘錄) -->
+        <section id="tools" class="scroll-mt-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-jeju-dark">🛠️ 旅人實用工具箱</h2>
+                <p class="text-gray-500 mt-2">即時預算計算與可勾選行前備忘錄</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- 預算計算器 -->
+                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <h3 class="text-xl font-bold mb-6 flex items-center text-jeju-dark">
+                        <i class="fa-solid fa-calculator text-jeju-orange mr-2"></i> 濟州島自由行預算估算器
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">旅遊天數</label>
+                            <input type="number" id="calcDays" value="5" min="1" max="15" class="w-full border border-gray-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-jeju-orange focus:outline-none" onchange="calculateBudget()">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">同行人數</label>
+                            <input type="number" id="calcPeople" value="2" min="1" max="10" class="w-full border border-gray-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-jeju-orange focus:outline-none" onchange="calculateBudget()">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">住宿品質 (每人每晚台幣)</label>
+                            <select id="calcHotel" class="w-full border border-gray-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-jeju-orange focus:outline-none" onchange="calculateBudget()">
+                                <option value="1200">平價青旅 / 簡約民宿 (NT$ 1,200/晚)</option>
+                                <option value="2200" selected>舒適海景飯店 (NT$ 2,200/晚)</option>
+                                <option value="4500">奢華渡假村 (NT$ 4,500/晚)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">主要交通方式</label>
+                            <select id="calcTransport" class="w-full border border-gray-300 rounded-xl p-2.5 text-sm focus:ring-2 focus:ring-jeju-orange focus:outline-none" onchange="calculateBudget()">
+                                <option value="300">公車 + 偶爾計程車 (約 NT$ 300/天/人)</option>
+                                <option value="800" selected>租車自駕 (油錢+保險 約 NT$ 800/天/人)</option>
+                                <option value="1500">包車一日遊 (約 NT$ 1,500/天/人)</option>
+                            </select>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-100 bg-jeju-lightOrange p-4 rounded-2xl">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-gray-600">估算個人總花費 (含機票約 9,000)：</span>
+                                <span class="text-2xl font-extrabold text-jeju-orange" id="totalTWD">NT$ 24,000</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span>約合韓元 (KRW)：</span>
+                                <span class="font-bold text-gray-700" id="totalKRW">₩ 1,020,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 可勾選備忘清單 (LocalStorage) -->
+                <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold flex items-center text-jeju-dark">
+                            <i class="fa-solid fa-list-check text-jeju-green mr-2"></i> 行前行李與物品檢查表
+                        </h3>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded" id="checklistProgress">0/0 完成</span>
+                    </div>
+
+                    <div class="space-y-3 max-h-80 overflow-y-auto pr-2" id="checklistContainer">
+                        <!-- 動態生成備忘項目 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 景點詳情 Modal 彈窗 -->
+    <div id="attractionModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transform transition-all duration-300 scale-95" id="modalContainer">
+            <div class="relative h-64 bg-gray-200">
+                <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/70 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span id="modalRegion" class="absolute bottom-4 left-4 bg-jeju-orange text-white text-xs font-bold px-3 py-1 rounded-full"></span>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4">
+                <h3 id="modalTitle" class="text-2xl font-bold text-jeju-dark"></h3>
+                <p id="modalDesc" class="text-gray-600 text-sm leading-relaxed"></p>
+                
+                <div class="bg-gray-50 p-4 rounded-xl space-y-2 text-sm text-gray-700">
+                    <div><i class="fa-solid fa-clock text-jeju-orange w-5"></i> <strong>建議停留：</strong> <span id="modalTime"></span></div>
+                    <div><i class="fa-solid fa-map-pin text-jeju-orange w-5"></i> <strong>交通提示：</strong> <span id="modalTransport"></span></div>
+                    <div><i class="fa-solid fa-lightbulb text-jeju-orange w-5"></i> <strong>小貼士：</strong> <span id="modalTip"></span></div>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <a id="modalNaverLink" href="#" target="_blank" class="bg-jeju-green text-white px-5 py-2.5 rounded-full hover:bg-teal-700 transition font-medium text-sm inline-flex items-center">
+                        <i class="fa-solid fa-location-arrow mr-2"></i> Naver Map 導航
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁尾 Footer -->
+    <footer class="bg-jeju-dark text-white py-8 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <div class="flex justify-center items-center space-x-2">
+                <span class="text-xl">🍊</span>
+                <span class="font-bold text-lg">濟州島自由行終極指南</span>
+            </div>
+            <p class="text-sm text-gray-400">祝您擁有美好的濟州島旅程！輕便行囊，出發感受海風與陽光。</p>
+            <p class="text-xs text-gray-500">© 2026 Jeju Travel Guide. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // --- 1. 景點資料庫 ---
+        const attractionsData = [
+            {
+                id: 'seongsan',
+                name: '城山日出峰 (성산일출봉)',
+                region: 'east',
+                regionText: '東部',
+                img: 'https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '聯合國教科文組織世界自然遺產，火山口看日出的絕佳地點。',
+                fullDesc: '城山日出峰是約10萬年前海底火山爆發形成的火山丘，頂部有巨大的火山口。登頂步道約需要 20-30 分鐘，站上峰頂可將藍天大海與草原景色一收眼底。',
+                time: '1.5 - 2 小時',
+                transport: '701路/101路急行公車於城山日出峰入口下車。',
+                tip: '建議清晨登頂看日出；山腳下下午有海女表演。',
+                naverSearch: '성산일출봉'
+            },
+            {
+                id: 'aewol',
+                name: '崖月邑海邊咖啡街 (애월카페거리)',
+                region: 'west',
+                regionText: '西部',
+                img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '蔚藍海岸與特色網美咖啡廳聚集地，夕陽美不勝收。',
+                fullDesc: '崖月邑擁有一條沿著玄武岩海岸線修建的散步道。這裡聚集了 Tribe、Bomnal 等知名咖啡館，坐在窗邊喝咖啡看浪花是濟州島最放鬆的行程。',
+                time: '2 - 3 小時',
+                transport: '自駕或搭乘 202路公車至漢潭洞(한담동)站。',
+                tip: '黃昏時分前來觀賞落日餘暉景色最佳。',
+                naverSearch: '애월한담해변'
+            },
+            {
+                id: 'osulloc',
+                name: 'OSULLOC 雪綠茶博物館',
+                region: 'west',
+                regionText: '西部',
+                img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '廣袤無垠的綠茶園，品嚐超人氣抹茶冰淇淋與甜點。',
+                fullDesc: '韓國首座以綠茶為主題的博物館，周圍環繞著綠油油的茶園。除了能了解茶文化，還能購買 Innisfree 濟州小屋的天然體驗產品。',
+                time: '1.5 小時',
+                transport: '搭乘 255路、151路公車至雪綠茶博物館站。',
+                tip: '一定要試試綠茶冰淇淋與綠茶瑞士卷！',
+                naverSearch: '오설록 티뮤지엄'
+            },
+            {
+                id: 'seogwipo',
+                name: '正房瀑布 (정방폭포)',
+                region: 'south',
+                regionText: '南部',
+                img: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '亞洲唯一直接注入大海的瀑布，氣勢磅礴。',
+                fullDesc: '瀑布高達 23 公尺，水流從崖壁直接奔流注入湛藍的太平洋中，近距離觀賞能感受到滿滿的負離子與涼爽水霧。',
+                time: '1 小時',
+                transport: '西歸浦市區搭乘 600路或市區公車至正房瀑布。',
+                tip: '岩石較滑，建議穿著防滑好走的鞋子。',
+                naverSearch: '정방폭포'
+            },
+            {
+                id: 'udoisland',
+                name: '牛島 (우도)',
+                region: 'east',
+                regionText: '東部',
+                img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '濟州島旁的小離島，騎電動車環島、吃花生冰淇淋。',
+                fullDesc: '因形狀像臥牛而得名。擁有果凍般的透明海水與珊瑚沙海灘。搭乘渡輪 15 分鐘即可抵達，環島一圈風景極佳。',
+                time: '4 - 6 小時 (半天)',
+                transport: '至城山港搭乘渡輪前往牛島天津港或下牛木洞港。',
+                tip: '入島需填寫乘船申告書並攜帶護照；島上可租借電動腳踏車。',
+                naverSearch: '우도'
+            },
+            {
+                id: 'dongmun',
+                name: '東門傳統市場 (동문재래시장)',
+                region: 'north',
+                regionText: '北部',
+                img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80',
+                shortDesc: '濟州規模最大歷史最悠久市場，夜市美食雲集。',
+                fullDesc: '白天的農產品市場，傍晚轉變為熱鬧非凡的夜市。集結黑豬肉串燒、柑橘拿鐵、鮑魚飯卷等特色小吃。',
+                time: '2 小時',
+                transport: '濟州機場搭乘 365/325 路公車於東門市場下車。',
+                tip: '晚上 6 點後夜市攤位陸續擺設，氣氛熱鬧。',
+                naverSearch: '제주 동문재래시장'
+            }
+        ];
+
+        // --- 2. 行程資料庫 ---
+        const itineraryData = {
+            1: [
+                { time: '09:30 - 11:30', title: '抵達濟州國際機場 & 領取 Pocket Wi-Fi / 租車', desc: '辦理入境手續、領車或搭乘機場巴士前往飯店。' },
+                { time: '12:00 - 13:30', title: '午餐：三姓穴豬肉湯麵', desc: '品嚐濟州代表性的濃郁豬肉湯麵暖胃。' },
+                { time: '14:30 - 17:00', title: '崖月邑海邊散步道 & 網美咖啡廳', desc: '漢潭海邊散步，挑選一家海景咖啡館享用下午茶。' },
+                { time: '18:00 - 20:00', title: '晚餐：熟成到 (숙성도) 炭烤黑豬肉', desc: '享用超人氣頂級熟成黑豬肉五花肉與梅花肉。' }
+            ],
+            2: [
+                { time: '10:00 - 12:00', title: 'OSULLOC 雪綠茶博物館 & 綠茶園', desc: '拍攝綠茶園美照，品嚐濃郁綠茶冰淇淋。' },
+                { time: '12:30 - 14:00', title: '午餐：山房山辣煮白帶魚', desc: '邊欣賞山房山壯麗景致，邊品嚐鮮美白帶魚。' },
+                { time: '14:30 - 16:30', title: '山房山 & 龍頭海岸', desc: '漫步海岸玄武岩絕壁，感受火山地形的鬼斧神工。' },
+                { time: '17:30 - 19:30', title: '西歸浦每日偶來市場', desc: '體驗南部的在地市場文化，採買柑橘與小吃。' }
+            ],
+            3: [
+                { time: '09:30 - 11:30', title: '正房瀑布', desc: '欣賞直落入海的氣勢瀑布，呼吸清新負離子。' },
+                { time: '12:00 - 13:30', title: '午餐：鮑魚石鍋飯 (명진전복)', desc: '新鮮鮑魚切片與奶油米飯的香濃結合。' },
+                { time: '14:00 - 16:30', title: '柱狀節理帶 (중문 대포주상절리대)', desc: '柱狀火山岩與大浪交織出的壯麗景色。' },
+                { time: '18:00 - 20:00', title: '中文觀光團地夕陽餐廳', desc: '享用海鮮火鍋或浪漫景觀晚餐。' }
+            ],
+            4: [
+                { time: '08:30 - 14:00', title: '牛島 (Udo) 半日遊', desc: '搭船前往牛島，租電動車環島、吃牛島花生冰淇淋。' },
+                { time: '14:30 - 16:30', title: '城山日出峰攀登', desc: '攀登至火山口頂端，展望東部海域與遼闊草原。' },
+                { time: '17:30 - 19:00', title: '涉地可支 (섭지코지)', desc: '沿著海岸丘陵散步，參觀白色燈塔與海岸美景。' },
+                { time: '19:30 - 21:00', title: '晚餐：海鮮刺身盤/海鮮鍋', desc: '享受現撈的濟州新鮮海產饗宴。' }
+            ],
+            5: [
+                { time: '10:00 - 12:00', title: '濟州市區 Olive Young 大採購', desc: '補貨美妝、保養品與個人護理熱門商品。' },
+                { time: '12:30 - 14:00', title: '東門傳統市場採買伴手禮', desc: '購買柑橘餅乾、石頭爺爺巧克力與乾貨。' },
+                { time: '14:30 - 16:00', title: '龍頭岩 (용두암) 隨手拍', desc: '離機場最近的經典地標，拍照留念。' },
+                { time: '16:30 - ', title: '前往濟州機場搭機返家', desc: '辦理退稅、免稅店最後巡禮，滿載而歸！' }
+            ]
+        };
+
+        // --- 3. 行李備忘錄資料 (LocalStorage) ---
+        const defaultChecklist = [
+            { id: 1, text: '護照 (效期6個月以上)', checked: true },
+            { id: 2, text: '台灣駕照 + 國際駕照 (自駕必備)', checked: false },
+            { id: 3, text: 'T-Money 交通卡', checked: false },
+            { id: 4, text: '韓國轉接頭 (雙圓孔 4.8mm) & 行動電源', checked: true },
+            { id: 5, text: '網卡 / eSIM 卡', checked: true },
+            { id: 6, text: '下載 Naver Map / Papago App', checked: true },
+            { id: 7, text: '現金 (韓元) & 海外高回饋信用卡', checked: false },
+            { id: 8, text: '個人常備藥品 & 保濕保養品', checked: false }
+        ];
+
+        let checklist = JSON.parse(localStorage.getItem('jeju_checklist')) || defaultChecklist;
+
+        // --- 4. 頁面初始化與事件處理 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAttractions('all');
+            switchDay(1);
+            renderChecklist();
+            calculateBudget();
+        });
+
+        // 平滑滾動
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 渲染景點卡片
+        function renderAttractions(filterRegionKey) {
+            const grid = document.getElementById('attractionsGrid');
+            grid.innerHTML = '';
+
+            const filtered = filterRegionKey === 'all' 
+                ? attractionsData 
+                : attractionsData.filter(item => item.region === filterRegionKey);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md border border-gray-100 transition flex flex-col cursor-pointer group';
+                card.onclick = () => openModal(item.id);
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-full">${item.regionText}</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2 text-jeju-dark group-hover:text-jeju-orange transition">${item.name}</h3>
+                            <p class="text-gray-600 text-xs sm:text-sm line-clamp-2">${item.shortDesc}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-jeju-orange font-medium">
+                            <span>查看詳細指南</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 篩選景點區域
+        function filterRegion(region) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.region === region) {
+                    btn.className = 'px-4 py-2 rounded-full text-sm font-medium bg-jeju-orange text-white filter-btn';
+                } else {
+                    btn.className = 'px-4 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 filter-btn';
+                }
+            });
+            renderAttractions(region);
+        }
+
+        // Hero 搜尋景點
+        function searchAttraction() {
+            const query = document.getElementById('heroSearchInput').value.trim().toLowerCase();
+            if (!query) return;
+
+            const found = attractionsData.find(a => a.name.toLowerCase().includes(query) || a.shortDesc.toLowerCase().includes(query));
+            if (found) {
+                openModal(found.id);
+            } else {
+                alert('未找到相關景點，為您顯示所有景點！');
+                scrollToSection('attractions');
+            }
+        }
+
+        // 彈窗 Modal 控制
+        function openModal(id) {
+            const item = attractionsData.find(a => a.id === id);
+            if (!item) return;
+
+            document.getElementById('modalImg').src = item.img;
+            document.getElementById('modalRegion').textContent = item.regionText;
+            document.getElementById('modalTitle').textContent = item.name;
+            document.getElementById('modalDesc').textContent = item.fullDesc;
+            document.getElementById('modalTime').textContent = item.time;
+            document.getElementById('modalTransport').textContent = item.transport;
+            document.getElementById('modalTip').textContent = item.tip;
+            document.getElementById('modalNaverLink').href = `https://map.naver.com/v5/search/${encodeURIComponent(item.naverSearch)}`;
+
+            const modal = document.getElementById('attractionModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                container.classList.remove('scale-95');
+                container.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('attractionModal');
+            const container = document.getElementById('modalContainer');
+            modal.classList.add('opacity-0');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 切換行程 Day
+        function switchDay(day) {
+            // 切換 頁籤 樣式
+            for (let i = 1; i <= 5; i++) {
+                const tab = document.getElementById(`tab-day${i}`);
+                if (i === day) {
+                    tab.className = 'px-6 py-4 font-medium transition whitespace-nowrap active-tab';
+                } else {
+                    tab.className = 'px-6 py-4 font-medium transition whitespace-nowrap text-gray-500 hover:text-jeju-orange';
+                }
+            }
+
+            // 渲染內容
+            const container = document.getElementById('dayContent');
+            const events = itineraryData[day];
+            
+            let html = '<div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-gray-200">';
+            events.forEach((evt, idx) => {
+                html += `
+                    <div class="relative flex items-start space-x-4 pl-2">
+                        <div class="w-4 h-4 rounded-full bg-jeju-orange border-4 border-white shadow mt-1 z-10 flex-shrink-0"></div>
+                        <div class="bg-gray-50 p-4 rounded-2xl flex-1 border border-gray-100">
+                            <span class="text-xs font-bold text-jeju-orange bg-orange-100 px-2.5 py-0.5 rounded-full">${evt.time}</span>
+                            <h4 class="font-bold text-lg text-jeju-dark mt-1">${evt.title}</h4>
+                            <p class="text-sm text-gray-600 mt-1">${evt.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // 預算試算邏輯
+        function calculateBudget() {
+            const days = parseInt(document.getElementById('calcDays').value) || 5;
+            const people = parseInt(document.getElementById('calcPeople').value) || 2;
+            const hotelPerNight = parseInt(document.getElementById('calcHotel').value) || 2200;
+            const transportPerDay = parseInt(document.getElementById('calcTransport').value) || 800;
+
+            const airfare = 9000; // 預估機票台幣
+            const foodPerDay = 1200; // 預估每日餐費台幣
+            const miscPerDay = 500; // 門票與雜費台幣
+
+            // 個人總預算計算 (TWD)
+            const totalTWDPerPerson = airfare + (hotelPerNight * (days - 1)) + (transportPerDay * days) + (foodPerDay * days) + (miscPerDay * days);
+            const totalKRWPerPerson = Math.round(totalTWDPerPerson * 42.5); // 匯率估算 1 TWD ≈ 42.5 KRW
+
+            document.getElementById('totalTWD').textContent = `NT$ ${totalTWDPerPerson.toLocaleString()}`;
+            document.getElementById('totalKRW').textContent = `₩ ${totalKRWPerPerson.toLocaleString()}`;
+        }
+
+        // 行李備忘錄渲染與儲存
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+
+            let completedCount = 0;
+
+            checklist.forEach(item => {
+                if (item.checked) completedCount++;
+
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-100 hover:bg-gray-100/80 transition';
+                div.innerHTML = `
+                    <label class="flex items-center space-x-3 cursor-pointer w-full">
+                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklist(${item.id})" class="w-4 h-4 text-jeju-orange rounded focus:ring-jeju-orange">
+                        <span class="text-sm ${item.checked ? 'line-through text-gray-400' : 'text-gray-700 font-medium'}">${item.text}</span>
+                    </label>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById('checklistProgress').textContent = `${completedCount}/${checklist.length} 完成`;
+            localStorage.setItem('jeju_checklist', JSON.stringify(checklist));
+        }
+
+        function toggleChecklist(id) {
+            checklist = checklist.map(item => item.id === id ? { ...item, checked: !item.checked } : item);
+            renderChecklist();
+        }
+    </script>
+</body>
+</html>
